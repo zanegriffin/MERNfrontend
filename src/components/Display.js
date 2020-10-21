@@ -13,10 +13,11 @@ const Display = (props) => {
             <>
                 <h5 onClick={() => {
                     props.selectSub(food);
-                    props.selectCat(category)
+                    props.selectCat(category);
                     props.history.push("/SubEdit");
                 }}>{food.name}</h5>
                 <p>{food.list}</p>
+                <button onClick={() => {props.deleteSub(food);}}>Remove</button> 
             </>
         )
     }))
@@ -28,15 +29,13 @@ const Display = (props) => {
                 <div className='img' style={{backgroundImage: "url(" + category.img + ")"}}></div>
                 <button onClick={() => {
                     props.selectCat(category);
-                    props.history.push("/Edit");
-                }}>Edit Category</button>
-                <button onClick={() => {
-                    props.deleteCat(category);
-                }}>Delete</button>
+                    props.history.push("/Edit");}}>Edit Category</button>
+                <button onClick={() => {props.deleteCat(category);}}>Delete</button>
                 <h3>{category.name}</h3>
                 <h5>Amount of total food per day: {category.amount}</h5>
                 <button onClick={() => {
                     props.history.push("/SubCreate")
+                    props.selectCat(category)
                 }}>Add Subcategory</button>
                 {subcards[index]}
             </div>

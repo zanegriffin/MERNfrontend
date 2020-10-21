@@ -46,6 +46,7 @@ function App() {
 //Sub creation
   const handleSubCreate = (newSubCategory) => {
     let cat = selectedCat._id
+    console.log('this is current cat', selectedCat)
     fetch(url + '/food/' + cat, {
       method: 'post',
       headers: {
@@ -92,6 +93,15 @@ function App() {
       getCategories()
     })
   }
+//Delete sub food
+  const handleSubDelete = (sub) => {
+    console.log(sub._id)
+    fetch(url + '/food/' + sub._id, {
+      method: 'delete'
+    }).then(() => {
+      getCategories()
+    })
+  }
 
   const selectCat = (cat) => {
     setSelectedCat(cat)
@@ -112,7 +122,7 @@ function App() {
         <button>Add Category</button>
       </Link>
       <Switch>
-        <Route exact path='/' render={(rp) => <Display {...rp} categories={categories} selectCat={selectCat} deleteCat={handleDelete} selectSub={selectSub} />}/>
+        <Route exact path='/' render={(rp) => <Display {...rp} categories={categories} selectCat={selectCat} deleteCat={handleDelete} selectSub={selectSub} deleteSub={handleSubDelete}/>}/>
         <Route exact path='/Create' render={(rp) => <Form {...rp} label='Create' handleSubmit={handleCreate} category={emptyCat}/>} />
         <Route exact path='/Edit' render={(rp) => <Form {...rp} label='Update' handleSubmit={handleUpdate} category={selectedCat}/>} />
         <Route exact path ='/SubCreate' render={(rp) => <SubForm label='Create' {...rp} handleSubmit={handleSubCreate} subcategory={emptySub} />} />
