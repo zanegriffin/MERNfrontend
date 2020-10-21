@@ -32,7 +32,10 @@ function App() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(newCategory)
-    }).then(response => getCategories())
+    }).then(response => {
+      console.log(response)
+      getCategories()
+    })
   }
 
   const handleUpdate = (cat) => {
@@ -48,6 +51,7 @@ function App() {
   }
 
   const handleDelete = (cat) => {
+    console.log(cat._id)
     fetch(url + '/category/' + cat._id, {
       method: 'delete'
     }).then(() => {
@@ -69,8 +73,8 @@ function App() {
       </Link>
       <Switch>
         <Route exact path='/' render={(rp) => <Display {...rp} categories={categories} selectCat={selectCat} deleteCat={handleDelete}/>}/>
-        <Route exact path='/Create' render={() => <Form label='Create' handleCreate={handleCreate} category={emptyCat}/>} />
-        <Route exact path='/Edit' render={() => <Form label='Update' handleCreate={handleUpdate} category={selectedCat}/>} />
+        <Route exact path='/Create' render={() => <Form label='Create' handleSubmit={handleCreate} category={emptyCat}/>} />
+        <Route exact path='/Edit' render={() => <Form label='Update' handleSubmit={handleUpdate} category={selectedCat}/>} />
       </Switch>
     </div>
   );

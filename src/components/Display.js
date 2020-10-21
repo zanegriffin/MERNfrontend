@@ -33,7 +33,6 @@ const Display = (props) => {
 
     return (
         <div>
-            <h1>ahhhhhh</h1>
             {cards}
         </div>
     )
