@@ -19,12 +19,14 @@ const Display = (props) => {
                 <p>{food.list}</p>
                 <button onClick={() => {props.deleteSub(food);}}>Remove</button> 
             </div>
+            
         )
     }))
 
     const cards = props.categories.map((category, index) => {
         return(
             <>
+            <div className='line'></div>
             <div className='cards'>
                 <div className='img' style={{backgroundImage: "url(" + category.img + ")"}}></div>
                 <button onClick={() => {
@@ -39,6 +41,8 @@ const Display = (props) => {
                 }}>Add Subcategory</button>
                 {subcards[index]}
             </div>
+            <br/>
+            
             </>
         )
     })

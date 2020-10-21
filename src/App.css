@@ -88,3 +88,8 @@ h5 {
     text-decoration: underline;
     margin-bottom: 5px;
 }
+
+.line {
+    border-bottom: 2px solid deeppink;
+    margin-bottom: 15px;
+}
