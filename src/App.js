@@ -4,6 +4,7 @@ import {Link, Route, Switch} from 'react-router-dom'
 import Display from './components/Display'
 import Form from './components/Form'
 import SubForm from './components/SubForm'
+import axios from 'axios'
 
 function App() {
 
@@ -26,18 +27,16 @@ function App() {
   }
   //GET categories
   const getCategories = () => {
-    fetch(url + '/category')
-    .then((response) => response.json())
-    .then((data) => setCategories(data))
+    axios(url + '/category')
+    .then((response) => setCategories(response.data))
   }
   //POST create categories
   const handleCreate = (newCategory) => {
-    fetch(url + '/category', {
+    axios({
+      url: url + '/category', 
       method: 'post',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newCategory)
+      headers: {'Content-Type': 'application/json'},
+      data: JSON.stringify(newCategory)
     }).then(response => {
       console.log(response)
       getCategories()
@@ -47,12 +46,11 @@ function App() {
   const handleSubCreate = (newSubCategory) => {
     let cat = selectedCat._id
     console.log('this is current cat', selectedCat)
-    fetch(url + '/food/' + cat, {
+    axios({
+      url: url + '/food/' + cat, 
       method: 'post',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newSubCategory)
+      headers: {'Content-Type': 'application/json'},
+      data: JSON.stringify(newSubCategory)
     }).then(response => {
       console.log(response)
       getCategories()
@@ -61,25 +59,24 @@ function App() {
 
 //PUT update category
   const handleUpdate = (cat) => {
-    fetch(url + '/category/' + cat._id, {
+    axios({
+      url: url + '/category/' + cat._id, 
       method: 'put',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(cat)
+      headers: {'Content-Type': 'application/json',},
+      data: JSON.stringify(cat)
     }).then(() => {
       getCategories()
     })
   }
 //sub cat update
   const handleSubUpdate = (sub) => {
-    
-    fetch(url + '/food/' + sub._id, {
+    axios({
+      url: url + '/food/' + sub._id, 
       method: 'put',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(sub)
+      data: JSON.stringify(sub)
     }).then(() => {
       getCategories()
     })
@@ -87,7 +84,8 @@ function App() {
 //Delete category
   const handleDelete = (cat) => {
     console.log(cat._id)
-    fetch(url + '/category/' + cat._id, {
+    axios({ 
+      url:url + '/category/' + cat._id, 
       method: 'delete'
     }).then(() => {
       getCategories()
@@ -96,7 +94,8 @@ function App() {
 //Delete sub food
   const handleSubDelete = (sub) => {
     console.log(sub._id)
-    fetch(url + '/food/' + sub._id, {
+    axios({
+      url: url + '/food/' + sub._id, 
       method: 'delete'
     }).then(() => {
       getCategories()
