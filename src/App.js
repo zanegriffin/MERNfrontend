@@ -115,7 +115,7 @@ function App() {
         <Route exact path='/' render={(rp) => <Display {...rp} categories={categories} selectCat={selectCat} deleteCat={handleDelete} selectSub={selectSub} />}/>
         <Route exact path='/Create' render={(rp) => <Form {...rp} label='Create' handleSubmit={handleCreate} category={emptyCat}/>} />
         <Route exact path='/Edit' render={(rp) => <Form {...rp} label='Update' handleSubmit={handleUpdate} category={selectedCat}/>} />
-        <Route exact path ='/SubCreate' render={(rp) => <SubForm label='Create' {...rp} subcategory={emptySub} />} />
+        <Route exact path ='/SubCreate' render={(rp) => <SubForm label='Create' {...rp} handleSubmit={handleSubCreate} subcategory={emptySub} />} />
         <Route exact path ='/SubEdit' render={(rp) => <SubForm label='Update' {...rp} handleSubmit={handleSubUpdate} subcategory={selectedSub} />} />
       </Switch>
     </div>
