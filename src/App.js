@@ -119,7 +119,7 @@ function App() {
       <header><h1>Nutrition Plate</h1></header>
       <br/>
       <Link to='/create'>
-        <button>Add Category</button>
+        <button className='cat-create'>Add Category</button>
       </Link>
       <Switch>
         <Route exact path='/' render={(rp) => <Display {...rp} categories={categories} selectCat={selectCat} deleteCat={handleDelete} selectSub={selectSub} deleteSub={handleSubDelete}/>}/>
