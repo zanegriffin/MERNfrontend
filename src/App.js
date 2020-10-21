@@ -43,6 +43,21 @@ function App() {
       getCategories()
     })
   }
+//Sub creation
+  const handleSubCreate = (newSubCategory) => {
+    let cat = selectedCat._id
+    fetch(url + '/food/' + cat, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newSubCategory)
+    }).then(response => {
+      console.log(response)
+      getCategories()
+    })
+  }
+
 //PUT update category
   const handleUpdate = (cat) => {
     fetch(url + '/category/' + cat._id, {
@@ -57,16 +72,13 @@ function App() {
   }
 //sub cat update
   const handleSubUpdate = (sub) => {
-    let cat = selectedCat
-    console.log('check path',sub.list)
-    cat.foods[cat.foods.indexOf(selectedSub)] = sub
-    console.log('check for change', cat.foods[cat.foods.indexOf(selectedSub)])
-    fetch(url + '/category/' + cat._id, {
+    
+    fetch(url + '/food/' + sub._id, {
       method: 'put',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(cat)
+      body: JSON.stringify(sub)
     }).then(() => {
       getCategories()
     })
