@@ -1,0 +1,38 @@
+body {
+   text-align: center;
+   background-image: url('https://images.unsplash.com/photo-1591968743883-decc954ccce8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: cover;
+}
+
+.App {
+    margin: 0 auto;
+    max-width: 800px;
+    background-color: cornsilk;
+    
+}
+
+header {
+    height: 100px;
+    background-color: coral;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 60px;
+}
+
+.img {
+    margin: 0 auto;
+    height: 400px;
+    width: 600px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+}

@@ -2,10 +2,20 @@ import React from 'react'
 
 const Display = (props) => {
 
+    const handleOnClick = (event) => {
+        event.preventDefault()
+        props.history.push('/SubCreate')
+    }
+
     const subcards = props.categories.map((category) => category.foods.map((food) => {
+        console.log(food)
         return (
             <>
-                <h5>{food.name}</h5>
+                <h5 onClick={() => {
+                    props.selectSub(food);
+                    props.selectCat(category)
+                    props.history.push("/SubEdit");
+                }}>{food.name}</h5>
                 <p>{food.list}</p>
             </>
         )
@@ -15,7 +25,7 @@ const Display = (props) => {
         return(
             <>
             <div>
-                <img src={category.img}/>
+                <div className='img' style={{backgroundImage: "url(" + category.img + ")"}}></div>
                 <button onClick={() => {
                     props.selectCat(category);
                     props.history.push("/Edit");
@@ -25,6 +35,9 @@ const Display = (props) => {
                 }}>Delete</button>
                 <h3>{category.name}</h3>
                 <h5>Amount of total food per day: {category.amount}</h5>
+                <button onClick={() => {
+                    props.history.push("/SubCreate")
+                }}>Add Subcategory</button>
                 {subcards[index]}
             </div>
             </>

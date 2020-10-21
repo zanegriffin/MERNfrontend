@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Form = (props) => {
- console.log(props)
-    const [formData, setFormData] = React.useState(props.category);
+const SubForm = (props) => {
 
+    const [formData, setFormData] = React.useState(props.subcategory);
+console.log(props.subcategory)
     const handleSubmit = (event) => {
         event.preventDefault(); // Prevent Form from Refreshing
         props.handleSubmit(formData); // Submit to Parents desired function
@@ -17,25 +17,18 @@ const Form = (props) => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-              <h3>Title</h3>
+                <h3>Name</h3>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                 />
-                <h3>Amount per Day</h3>
+                <h3>List</h3>
                 <input
                   type="text"
-                  name="amount"
-                  value={formData.amount}
-                  onChange={handleChange}
-                />
-                <h3>Image Url</h3>
-                <input
-                  type="text"
-                  name="img"
-                  value={formData.img}
+                  name="list"
+                  value={formData.list}
                   onChange={handleChange}
                 />
                 <input type="submit" value={props.label} />
@@ -44,4 +37,4 @@ const Form = (props) => {
     )
 }
 
-export default Form
+export default SubForm
